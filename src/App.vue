@@ -1,36 +1,37 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <img src="./assets/logo.png">
     <h1> Useless Calculator </h1>
     <h2> {{ total == 0 ? "" : total }} {{ prevOps }} {{ display }}</h2>
-    <div>
-      <div class="container">
-        <div >
-          <button @click="enterOps('/')">/</button>
-          <button @click="enterNum(7)">7</button>
-          <button @click="enterNum(8)">8</button>
-          <button @click="enterNum(9)">9</button>
-        </div>
-        <div >
-          <button @click="enterOps('*')">*</button>
-          <button @click="enterNum(4)">4</button>
-          <button @click="enterNum(5)">5</button>
-          <button @click="enterNum(6)">6</button>
-        </div>
-        <div >
-          <button @click="enterOps('+')">+</button>
-          <button @click="enterNum(1)">1</button>
-          <button @click="enterNum(2)">2</button>
-          <button @click="enterNum(3)">3</button>
-        </div>   
-        <div >
-          <button @click="enterOps('-')">-</button>
-          <button @click="enterNum(0)">0</button>
-          <button @click="clear">C</button>
-          <button @click="enterOps('=')">=</button>
-        </div>                       
-      </div>
+    <div >
+      <button @click="enterOps('/')">/</button>
+      <button @click="enterNum(7)">7</button>
+      <button @click="enterNum(8)">8</button>
+      <button @click="enterNum(9)">9</button>
     </div>
+    <div >
+      <button @click="enterOps('*')">*</button>
+      <button @click="enterNum(4)">4</button>
+      <button @click="enterNum(5)">5</button>
+      <button @click="enterNum(6)">6</button>
+    </div>
+    <div >
+      <button @click="enterOps('+')">+</button>
+      <button @click="enterNum(1)">1</button>
+      <button @click="enterNum(2)">2</button>
+      <button @click="enterNum(3)">3</button>
+    </div>   
+    <div >
+      <button @click="enterOps('-')">-</button>
+      <button @click="enterNum(0)">0</button>
+      <button @click="clear">C</button>
+      <button @click="enterOps('=')">=</button>
+    </div>
+    <p><a href="https://github.com/msrks/vue-calculator">[view source on github]</a></p>
+    <hr>
+    <footer>
+      <p>&copy Copyright 2018 <a href="http://msrks.github.io">@msrks</a></p>
+    </footer>                    
   </div>
 </template>
 

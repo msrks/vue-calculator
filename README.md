@@ -1,6 +1,8 @@
 # vue-calculator
 
-> A Vue.js project
+``` bash
+vue init bootstrap-vue/webpack-simple vue-calculator
+```
 
 ## Build Setup
 
@@ -16,3 +18,9 @@ npm run build
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Deploy
+
+```bash
+sh deploy.sh
+```

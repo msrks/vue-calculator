@@ -1,21 +1,36 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <h1> Useless Calculator </h1>
+    <h2> {{ total == 0 ? "" : total }} {{ prevOps }} {{ display }}</h2>
+    <div>
+      <div class="container">
+        <div >
+          <button @click="enterOps('/')">/</button>
+          <button @click="enterNum(7)">7</button>
+          <button @click="enterNum(8)">8</button>
+          <button @click="enterNum(9)">9</button>
+        </div>
+        <div >
+          <button @click="enterOps('*')">*</button>
+          <button @click="enterNum(4)">4</button>
+          <button @click="enterNum(5)">5</button>
+          <button @click="enterNum(6)">6</button>
+        </div>
+        <div >
+          <button @click="enterOps('+')">+</button>
+          <button @click="enterNum(1)">1</button>
+          <button @click="enterNum(2)">2</button>
+          <button @click="enterNum(3)">3</button>
+        </div>   
+        <div >
+          <button @click="enterOps('-')">-</button>
+          <button @click="enterNum(0)">0</button>
+          <button @click="clear">C</button>
+          <button @click="enterOps('=')">=</button>
+        </div>                       
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,8 +39,57 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      currentNum: 0,
+      total: 0,
+      display: "",
+      prevOps: "",
     }
+  },
+  methods: {
+    clear () {
+      this.currentNum = 0;
+      this.total = 0;
+      this.display = "";
+      this.prevOps = "";
+    },
+    enterNum (val) {
+      if (this.currentNum == 0) {
+        this.currentNum = val;
+        this.display = val.toString();
+      } else {
+        this.currentNum = this.currentNum * 10 + val;
+        this.display += val.toString();
+      }
+    },
+    enterOps (ops) {
+      if (this.total == 0 && this.currentNum == 0) {
+        return;
+      }
+      switch (this.prevOps) {
+        case "":
+        case "+":
+          this.total += this.currentNum;
+          break;
+        case "-":
+          this.total -= this.currentNum;
+          break;
+        case "*":
+          this.total *= this.currentNum;
+          break;
+        case "/":
+          this.total /= this.currentNum;
+          break;          
+      }
+      this.currentNum = 0;
+      if (ops == "=") {
+        this.display = this.total.toString();
+        this.total = 0;
+        this.prevOps = "";
+        return;
+      }
+      this.display = "";
+      this.prevOps = ops;
+    },
   }
 }
 </script>
@@ -56,5 +120,12 @@ li {
 
 a {
   color: #42b983;
+}
+
+button {
+  margin: 0px;
+  padding: 0px;
+  width: 40px;
+  font-size: 1.3em;
 }
 </style>
